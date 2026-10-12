@@ -1,0 +1,1 @@
+V7: Se corrigió la consulta a perfiles_gusaniza para no solicitar una columna email inexistente. El panel administrativo obtiene los correos desde Supabase Auth (servicio de administrador, solo servidor). No se cambia el esquema ni los datos de Supabase. Se mantiene el resto del proyecto V6.
