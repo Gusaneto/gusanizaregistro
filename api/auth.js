@@ -25,6 +25,6 @@ export default async function handler(req,res){try{
  const {error:re}=await admin.auth.admin.updateUserById(user.id,{password});if(re)throw re;
  clearSession(res);return ok(res,{message:'Contraseña actualizada. Ya puedes iniciar sesión.'});
  }
- if(action==='recover'){if(!method(req,res,['POST']))return;const email=req.body?.email;if(typeof email!=='string')return fail(res,'Correo requerido');const {error}=await publicClient.auth.resetPasswordForEmail(email,{redirectTo:`https://${req.headers.host}/`});if(error)return fail(res,error.message);return ok(res,{message:'Si el correo existe, recibirás instrucciones de recuperación.'})}
+ if(action==='recover'){if(!method(req,res,['POST']))return;const email=req.body?.email;if(typeof email!=='string')return fail(res,'Correo requerido');const {error}=await publicClient.auth.resetPasswordForEmail(email,{redirectTo:"https://gusanizaregistro.vercel.app/"});if(error)return fail(res,error.message);return ok(res,{message:'Si el correo existe, recibirás instrucciones de recuperación.'})}
  return fail(res,'Acción desconocida',404);
  }catch(e){safeError(res,e)}}
