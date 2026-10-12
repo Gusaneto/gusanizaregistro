@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐛 QR Gusaniza</title>
+<script src="./qrcode.min.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at top,#123d20 0%,#061109 35%,#020403 75%);color:#fff;display:flex;justify-content:center;align-items:center;padding:20px}.card{width:100%;max-width:520px;background:#080d09;border:1px solid #1aff5c;border-radius:24px;padding:30px 25px;text-align:center;box-shadow:0 0 30px rgba(0,255,80,.18)}h1{margin:0;color:#39ff72;font-size:34px;text-shadow:0 0 15px rgba(0,255,80,.45)}.sub{color:#a9b9ad;margin:8px 0 25px}.title{display:flex;align-items:center;justify-content:center;gap:10px}.worm{font-size:36px}input{width:100%;height:55px;border:1px solid #245f35;border-radius:13px;background:#020503;color:#fff;padding:0 16px;font-size:16px;outline:none}input:focus{border-color:#21ff5d;box-shadow:0 0 15px rgba(33,255,93,.18)}.buttons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}button{height:52px;border-radius:13px;border:1px solid #22ff60;font-size:15px;font-weight:bold;cursor:pointer}#generate{background:#16d84c;color:#001b07}#download{background:#0b1b10;color:#45ff78}button:disabled{opacity:.35;cursor:not-allowed}.status{min-height:20px;margin-top:12px;font-size:14px;color:#6eff91}.qrbox{margin-top:25px;padding:18px;background:#fff;border-radius:18px;display:none}.qrbox.show{display:block}#qr{width:100%;max-width:400px;display:block;margin:auto}@media(max-width:550px){.buttons{grid-template-columns:1fr}h1{font-size:29px}}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="title"><span class="worm">🐛</span><h1>QR Gusaniza</h1></div>
+  <div class="sub">Genera códigos QR rápidamente</div>
+  <input id="link" type="text" placeholder="https://ejemplo.com" autocomplete="off">
+  <div class="buttons"><button id="generate">GENERAR QR</button><button id="download" disabled>DESCARGAR JPG</button></div>
+  <div id="status" class="status"></div>
+  <div id="qrbox" class="qrbox"><img id="qr" alt="Código QR"></div>
+</div>
+<script>
+const input=document.getElementById('link');const generate=document.getElementById('generate');const download=document.getElementById('download');const status=document.getElementById('status');const qrbox=document.getElementById('qrbox');const qr=document.getElementById('qr');let ready=false;
+function normalize(v){v=v.trim();if(v&&!/^https?:\/\//i.test(v))v='https://'+v;return v;}
+function makeQR(){const text=normalize(input.value);if(!text){status.textContent='⚠️ Escribe un enlace primero.';input.focus();return;}status.textContent='Generando QR...';generate.disabled=true;QRCode.toDataURL(text,{width:1000,margin:4,errorCorrectionLevel:'H'}).then(url=>{qr.onload=()=>{qrbox.classList.add('show');ready=true;download.disabled=false;generate.disabled=false;status.textContent='✅ QR generado correctamente.';};qr.onerror=()=>{generate.disabled=false;status.textContent='❌ No se pudo cargar el QR.';};qr.src=url;}).catch(err=>{console.error(err);generate.disabled=false;status.textContent='❌ '+err.message;});}
+async function downloadJPG(){
+  if(!ready)return;
+  try{
+    status.textContent='Preparando JPG...';
+    download.disabled=true;
+
+    // El QR se genera desde un servicio externo. Primero lo descargamos como
+    // Blob y luego lo dibujamos en un canvas local; así el canvas queda limpio
+    // y podemos convertirlo realmente a JPEG.
+    const pngUrl = QRCode._buildUrl(normalize(input.value), {width:1000, margin:4, errorCorrectionLevel:'H'});
+    const response = await fetch(pngUrl, {mode:'cors'});
+    if(!response.ok) throw new Error('No se pudo obtener la imagen QR.');
+    const pngBlob = await response.blob();
+    const localUrl = URL.createObjectURL(pngBlob);
+
+    const img = new Image();
+    img.onload = async () => {
+      try {
+        const canvas=document.createElement('canvas');
+        canvas.width=1000;
+        canvas.height=1000;
+        const ctx=canvas.getContext('2d');
+        ctx.fillStyle='#fff';
+        ctx.fillRect(0,0,1000,1000);
+        ctx.drawImage(img,0,0,1000,1000);
+
+        const jpgBlob=await new Promise((resolve,reject)=>{
+          canvas.toBlob(blob=>blob ? resolve(blob) : reject(new Error('El navegador no pudo crear el JPG.')),'image/jpeg',0.95);
+        });
+
+        const url=URL.createObjectURL(jpgBlob);
+        const name=normalize(input.value).replace(/^https?:\/\//i,'').replace(/[^a-z0-9._-]/gi,'-').replace(/^-+|-+$/g,'').substring(0,60)||'codigo-qr';
+        const a=document.createElement('a');
+        a.href=url;
+        a.download=name+'-QR.jpg';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        setTimeout(()=>{
+          URL.revokeObjectURL(url);
+          URL.revokeObjectURL(localUrl);
+        },2000);
+        download.disabled=false;
+        status.textContent='✅ JPG descargado correctamente.';
+      } catch(err) {
+        URL.revokeObjectURL(localUrl);
+        download.disabled=false;
+        console.error(err);
+        status.textContent='❌ No se pudo crear el JPG: '+err.message;
+      }
+    };
+    img.onerror=()=>{
+      URL.revokeObjectURL(localUrl);
+      download.disabled=false;
+      status.textContent='❌ No se pudo preparar la imagen QR.';
+    };
+    img.src=localUrl;
+  }catch(err){
+    download.disabled=false;
+    console.error(err);
+    status.textContent='❌ No se pudo crear el JPG: '+err.message;
+  }
+}
+
+generate.addEventListener('click',makeQR);download.addEventListener('click',downloadJPG);input.addEventListener('keydown',e=>{if(e.key==='Enter')makeQR();});
+</script>
+</body>
+</html>

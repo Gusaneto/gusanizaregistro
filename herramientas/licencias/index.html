@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lisencias Gusaniza</title>
+<style>
+:root{--g:#22d477;--g2:#0f9f59;--bg:#07100c;--p:#0c1712;--p2:#102019;--line:#1d3428;--txt:#effff5;--muted:#8fa99b;--red:#ff6878}
+*{box-sizing:border-box}body{margin:0;height:100vh;overflow:hidden;background:radial-gradient(circle at 50% -10%,#15452f,#07100c 48%,#040806);color:var(--txt);font:14px system-ui,-apple-system,Segoe UI,sans-serif}.app{height:100vh;display:grid;grid-template-rows:64px 1fr 32px}.top{display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid var(--line);background:#08130eee;backdrop-filter:blur(12px)}.brand{font-size:20px;font-weight:850}.brand span{color:var(--g)}.spacer{flex:1}.btn{border:1px solid var(--line);background:#102019;color:var(--txt);padding:9px 13px;border-radius:10px;font-weight:750;cursor:pointer}.btn:hover{border-color:#31845b;background:#14291f}.btn.primary{background:var(--g);color:#032012;border-color:var(--g)}.btn:disabled{opacity:.45;cursor:not-allowed}.zoom{display:flex;gap:4px;align-items:center;padding:4px;border:1px solid var(--line);border-radius:10px;background:#0b1711}.zoom button{border:0;background:#14251d;color:#eafff1;border-radius:7px;width:32px;height:29px;cursor:pointer}.zoom b{width:48px;text-align:center;font-size:12px;color:var(--muted)}.main{min-height:0;display:grid;grid-template-columns:280px minmax(0,1fr) 300px;gap:10px;padding:10px}.panel,.center{min-height:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#09150fe8;box-shadow:0 12px 40px #0006}.panel{display:flex;flex-direction:column}.right{display:flex;flex-direction:column;min-height:0;overflow:hidden}.right #props{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}.right>.prop.info:last-child{flex:0 0 auto}.head{padding:14px;font-weight:850;border-bottom:1px solid var(--line)}.body{padding:12px;overflow:auto}.drop{border:1px dashed #2a6548;border-radius:12px;padding:17px;text-align:center;color:var(--muted);background:#0a1911;cursor:pointer}.drop strong{display:block;color:var(--txt);margin-bottom:5px}.drop.drag{border-color:var(--g);background:#0d2519}.layers{display:flex;flex-direction:column;gap:7px;margin-top:12px}.layer{padding:10px;border:1px solid var(--line);border-radius:10px;background:#0d1b14;cursor:pointer}.layer.sel{border-color:var(--g);background:#10291d}.name{font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{font-size:11px;color:var(--muted);margin-top:3px}.empty{text-align:center;color:var(--muted);padding:24px 8px;font-size:12px}.center{position:relative;background:#020504;overflow:hidden}.viewport{position:absolute;inset:0;overflow:auto;background:#020504}.stage{min-width:100%;min-height:100%;display:flex;align-items:center;justify-content:center;padding:20px}.preview{position:relative;display:block;flex:none;background:#020504;object-fit:fill}.hint{position:absolute;left:14px;bottom:14px;background:#07120de8;border:1px solid #254a36;border-radius:10px;padding:8px 10px;color:var(--muted);font-size:11px;pointer-events:none}.prop{padding:12px;border-bottom:1px solid var(--line)}label{display:block;color:var(--muted);font-size:11px;margin-bottom:6px}.ta{width:100%;min-height:110px;resize:vertical;background:#07110c;color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:10px;outline:none}.ta:focus{border-color:var(--g)}.full{width:100%}.move{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:9px}.move button,.fine button{height:34px;border:1px solid var(--line);border-radius:8px;background:#11231a;color:var(--txt);cursor:pointer}.move button:hover,.fine button:hover{border-color:var(--g)}.blank{visibility:hidden}.fine{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}.info{color:var(--muted);font-size:12px;line-height:1.5}.badge{display:inline-flex;padding:4px 7px;border-radius:999px;background:#0d281b;color:#77e9aa;font-size:10px;font-weight:800}.status{display:flex;align-items:center;padding:0 14px;color:var(--muted);font-size:11px;border-top:1px solid var(--line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hidden{display:none!important}@media(max-width:1050px){
+ .main{grid-template-columns:minmax(190px, .8fr) minmax(0,1.2fr)}
+ .right{display:flex}
+}
+@media(max-width:720px){
+ html,body{height:100%;height:100dvh;overflow:hidden}
+ .app{height:100%;height:100dvh;min-height:0;grid-template-rows:auto minmax(0,1fr) 28px}
+ .top{min-height:58px;height:auto;flex-wrap:wrap;gap:7px;padding:8px}
+ .brand{font-size:16px}
+ .spacer{flex:1 1 4px}
+ .top .btn{padding:8px 10px;font-size:12px}
+ .zoom{display:flex;gap:3px;padding:3px}
+ .zoom button{width:29px;height:28px}
+ .zoom b{width:39px}
+ .main{min-height:0;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(180px,38%) minmax(0,1fr);gap:7px;padding:7px}
+ .center{grid-row:1;min-height:0}
+ .left{display:flex;grid-row:2;min-height:0}
+ .right{display:flex;grid-row:3;min-height:220px}
+ .main{overflow-y:auto;overflow-x:hidden;grid-template-rows:minmax(180px,38vh) minmax(220px,auto) minmax(220px,auto)}
+ .panel,.center{border-radius:10px}
+ .head{padding:10px}
+ .body{padding:9px}
+ .prop{padding:9px}
+ .right{min-height:220px;overflow:hidden}
+ .right #props{min-height:0;flex:1 1 0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+ .right>.prop.info:last-child{max-height:92px;overflow:auto}
+ .drop{padding:10px}
+ .status{padding:0 9px;font-size:10px}
+ .hint{left:7px;bottom:7px;font-size:10px}
+}
+@media(max-width:720px) and (orientation:landscape){
+ .top{flex-wrap:nowrap;gap:6px;padding:5px 8px}
+ .brand{font-size:14px}
+ .top .btn{padding:7px 8px;font-size:11px}
+ .zoom button{width:25px;height:25px}
+ .zoom b{width:32px}
+ .main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(150px,42vh) minmax(200px,auto) minmax(200px,auto);gap:6px;padding:6px}
+ .center{grid-column:1/-1;grid-row:1}
+ .left{grid-column:1;grid-row:2}
+ .right{grid-column:2;grid-row:2;min-height:200px;overflow:hidden}
+ .right #props{min-height:0;flex:1 1 0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+ .right>.prop.info:last-child{max-height:68px;overflow:auto}
+ .main{overflow-y:auto}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div class="brand">Lisencias <span>Gusaniza</span></div><div class="spacer"></div><div class="zoom"><button id="zout">−</button><b id="zlabel">100%</b><button id="zfit">Fit</button><button id="zin">+</button></div><button class="btn" id="open">Abrir PSD</button><button class="btn primary" id="save" disabled>Guardar JPG</button><input id="file" type="file" accept=".psd,.PSD,application/octet-stream" hidden></header>
+<main class="main">
+<section class="panel left"><div class="head">Capas editables</div><div class="body"><div class="drop" id="drop"><strong>Suelta aquí tu PSD</strong><span>o toca para buscarlo</span></div><div class="layers" id="layers"><div class="empty">Carga una plantilla para ver sus textos e imágenes.</div></div></div></section>
+<section class="center"><div class="viewport" id="viewport"><div class="stage" id="stage"><canvas id="preview" class="preview"></canvas></div></div><div class="hint">Vista previa · los cambios se aplican a las capas originales</div></section>
+<section class="panel right"><div class="head">Propiedades</div><div id="props"><div class="prop info">Selecciona una capa de texto o imagen.</div></div><div class="prop info"><span class="badge">TEXTO: ARIAL · #404048</span><br><br>La plantilla se procesa directamente en tu navegador. Los cambios no se suben a ningún servidor.</div></section>
+</main><footer class="status" id="status">Listo · Sin plantilla cargada</footer>
+</div>
+<script src="https://unpkg.com/ag-psd@14.0.2/dist/bundle.js"></script>
+<script>
+const $=id=>document.getElementById(id);let psd=null,originalBuffer=null,selected=null,layers=[],zoom=1,loading=false,sourceName="plantilla";
+const preview=$('preview');
+function status(s){$('status').textContent=s}
+function escHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function walk(nodes,path=[],out=[]){(nodes||[]).forEach((l,i)=>{const p=path.concat(i);if(Array.isArray(l.children)){walk(l.children,p,out)}else if(l.text){out.push({id:p,name:l.name||'Texto',type:'text',text:l.text.text||'',blend:l.blendMode||'normal',opacity:l.opacity==null?1:l.opacity,layer:l})}else if(l.canvas||l.imageData||l.placedLayer){out.push({id:p,name:l.name||'Imagen',type:'image',blend:l.blendMode||'normal',opacity:l.opacity==null?1:l.opacity,layer:l})}});return out}
+function getLayer(id){let cur=psd;for(const n of id){if(!cur.children)return null;cur=cur.children[n]}return cur}
+function renderList(){const box=$('layers');box.innerHTML='';if(!layers.length){box.innerHTML='<div class="empty">No se detectaron capas editables.</div>';return}layers.forEach(l=>{const el=document.createElement('div');el.className='layer'+(selected&&selected.id.join('/')===l.id.join('/')?' sel':'');el.innerHTML='<div class="name">'+(l.type==='text'?'T ':'▧ ')+escHtml(l.name)+'</div><div class="meta">'+(l.type==='text'?'Texto':'Imagen')+' · '+escHtml(l.blend)+' · '+Math.round(l.opacity*100)+'%</div>';el.onclick=()=>{selected=l;renderList();renderProps()};box.appendChild(el)})}
+function renderProps(){const p=$('props');if(!selected){p.innerHTML='<div class="prop info">Selecciona una capa de texto o imagen.</div>';return}if(selected.type==='text'){p.innerHTML='<div class="prop"><label>Contenido del texto</label><textarea class="ta" id="tv"></textarea><label style="margin-top:10px">Grosor</label><select id="weight" class="ta" style="min-height:42px;height:42px;resize:none"><option value="regular">Regular</option><option value="bold">Bold</option></select><button class="btn primary full" id="apply" style="margin-top:8px">Aplicar cambio</button><div class="move"><button class="blank">.</button><button data-d="0,-5">↑</button><button class="blank">.</button><button data-d="-5,0">←</button><button data-d="0,5">↓</button><button data-d="5,0">→</button></div><div class="fine"><button data-d="-1,0">← 1 px</button><button data-d="1,0">1 px →</button></div></div><div class="prop info">Modo: '+escHtml(selected.blend)+'<br>Opacidad: '+Math.round(selected.opacity*100)+'%</div>';$('tv').value=selected.text;$('weight').value=selected.layer.__gWeight||'regular';$('weight').onchange=()=>{selected.layer.__gWeight=$('weight').value;selected.layer.__gDirty=true;status('Grosor actualizado');drawPreview()};$('apply').onclick=()=>updateText($('tv').value);p.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>moveText(...b.dataset.d.split(',').map(Number)))}else{p.innerHTML='<div class="prop"><label>Capa de imagen</label><div style="font-weight:800;margin-bottom:8px">'+escHtml(selected.name)+'</div><div class="info">Modo: '+escHtml(selected.blend)+'<br>Opacidad: '+Math.round(selected.opacity*100)+'%</div><button class="btn primary full" id="replace" style="margin-top:12px">Reemplazar imagen</button><input id="img" type="file" accept="image/png,image/jpeg,image/webp" hidden></div><div class="prop info">Se reemplazan los píxeles de esta capa conservando su posición, tamaño, opacidad, modo de fusión y máscaras compatibles.</div>';$('replace').onclick=()=>$('img').click();$('img').onchange=()=>{if($('img').files[0])replaceImage($('img').files[0])}}}
+function syncLayers(){layers=walk(psd.children);renderList();renderProps();$('save').disabled=false;status('Plantilla lista · '+layers.length+' capas editables')}
+async function loadPSD(file){
+ if(!file||loading)return;
+ loading=true; selected=null; layers=[]; psd=null; originalBuffer=null; sourceName=file.name.replace(/\.psd$/i,'')||'plantilla';
+ $('save').disabled=true; status('Leyendo PSD… 0%');
+ try{
+   const buf=await file.arrayBuffer(); originalBuffer=buf;
+   // ag-psd needs the complete document here because the preview is generated from the PSD composite.
+   await new Promise(r=>setTimeout(r,20));
+   status('Leyendo PSD… procesando capas');
+   psd=agPsd.readPsd(buf,{useImageData:false,totalMemoryLimit:1024*1024*1024});
+   if(!psd || !psd.width || !psd.height) throw new Error('El PSD no contiene un documento válido.');
+   // Keep the original composite immutable; edits are represented as dirty layer overlays.
+   syncLayers();
+   drawPreview();
+   loading=false;
+   status(`Plantilla lista · ${psd.width}×${psd.height}px · ${layers.length} capas editables`);
+ }catch(e){
+   loading=false; psd=null; originalBuffer=null; $('save').disabled=true;
+   console.error(e); status('Error al leer el PSD');
+   alert('No se pudo abrir este PSD.\n\n'+(e&&e.message?e.message:e));
+ }
+}
+function rebuildPreview(){drawPreview();}
+function getLayerRect(l){
+ const x=Number(l.left||0), y=Number(l.top||0);
+ const w=Math.max(1,Math.round(Number(l.right||0)-x || (l.canvas&&l.canvas.width)||1));
+ const h=Math.max(1,Math.round(Number(l.bottom||0)-y || (l.canvas&&l.canvas.height)||1));
+ return {x,y,w,h};
+}
+function getTextStyleAt(textData, offset){
+ const base=textData.style||{};
+ let chosen=base;
+ let pos=0;
+ for(const run of (textData.styleRuns||[])){
+   const len=Number(run.length||0);
+   if(offset>=pos && offset<pos+len){ chosen={...base,...(run.style||{})}; break; }
+   pos+=len;
+ }
+ return chosen;
+}
+// The templates in this workflow use Arial with a fixed text color.
+// Keep the original size/weight/italic/tracking/transform, but normalize the
+// replacement glyph family and color so the newly created text matches the PSD.
+const TEMPLATE_TEXT_FONT='Arial';
+const TEMPLATE_TEXT_COLOR={r:0x40,g:0x40,b:0x48,a:1};
+function getTextWeight(l){return l && l.__gWeight==='bold' ? '700' : '400'} // #404048
+function normalizedTextStyle(st){
+ const s={...(st||{})};
+ s.font={...(s.font||{}),name:TEMPLATE_TEXT_FONT};
+ s.fillColor={...TEMPLATE_TEXT_COLOR};
+ s.fillFlag=true;
+ return s;
+}
+function cssFont(st,layer){
+ const s=normalizedTextStyle(st);
+ const size=Math.max(1,Number(s.fontSize||24));
+ const weight=layer ? getTextWeight(layer) : (s.fauxBold?'700':'400');
+ const italic=s.fauxItalic?'italic ':'normal ';
+ return italic+weight+' '+size+'px Arial, sans-serif';
+}
+function drawTrackedLine(ctx,line,x,y,st){
+ const baseStyle=normalizedTextStyle(st);
+ const size=Math.max(1,Number(baseStyle.fontSize||24));
+ const tracking=(Number(baseStyle.tracking||0)/1000)*size;
+ const scaleX=Number(baseStyle.horizontalScale==null?1:baseStyle.horizontalScale);
+ ctx.save();ctx.scale(scaleX,1);
+ let xx=x/scaleX;
+ for(let i=0;i<line.length;i++){
+   const ch=line[i]; const cs=normalizedTextStyle(getTextStyleAt(baseStyle.__textData||{},baseStyle.__offset+i));
+   ctx.font=cssFont(cs, baseStyle.__layer);
+   const col=TEMPLATE_TEXT_COLOR;
+   ctx.fillStyle='rgba('+col.r+','+col.g+','+col.b+','+col.a+')';
+   if(cs.fillFlag!==false)ctx.fillText(ch,xx,y+(Number(cs.baselineShift||0)||0));
+   if(cs.strikethrough){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=Math.max(1,size/14);ctx.beginPath();ctx.moveTo(xx,y-size*.3);ctx.lineTo(xx+ctx.measureText(ch).width,y-size*.3);ctx.stroke()}
+   if(cs.underline){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=Math.max(1,size/16);ctx.beginPath();ctx.moveTo(xx,y+size*.08);ctx.lineTo(xx+ctx.measureText(ch).width,y+size*.08);ctx.stroke()}
+   xx+=ctx.measureText(ch).width+tracking;
+ }
+ ctx.restore();
+}
+function drawTextLayer(ctx,l){
+ const t=l.text||{}, base=normalizedTextStyle(t.style||{});
+ const r=getLayerRect(l);
+ const tr=t.transform||[1,0,0,1,r.x,r.y];
+ const tx=Number(tr[4]||0), ty=Number(tr[5]||0);
+ const sx=Math.hypot(Number(tr[0]||1),Number(tr[1]||0))||1;
+ const sy=Math.hypot(Number(tr[2]||0),Number(tr[3]||1))||1;
+ const angle=Math.atan2(Number(tr[1]||0),Number(tr[0]||1));
+ const text=String(t.text||'');
+ const lines=text.split(/\r?\n/);
+ const leading=Number(base.leading||Number(base.fontSize||24)*1.2);
+ const para=t.paragraphStyle||{};
+ const justification=String(para.justification||'left').toLowerCase();
+ // Photoshop's text transform is anchored to the text object. Keep that matrix intact,
+ // but establish the drawing origin from the original layer bounds so the replacement
+ // occupies the same layer location instead of jumping to a new canvas origin.
+ const bx=(t.bounds&&Number(t.bounds.left)) ?? r.x;
+ const by=(t.bounds&&Number(t.bounds.top)) ?? r.y;
+ const originX=tx + (bx-r.x);
+ // Use the font's real ascent as the baseline offset. The previous fixed
+ // fontSize offset pushed replacements slightly downward when the text was
+ // recreated, especially with Arial. Aligning the actual glyph top to the
+ // original layer anchor keeps the replacement in exactly the same location.
+ ctx.font=cssFont(base,l);
+ const measuredAscent=(ctx.measureText('Hg').actualBoundingBoxAscent||Number(base.fontSize||24)*0.8);
+ const originY=ty + (by-r.y) + measuredAscent;
+ ctx.save();
+ ctx.globalAlpha=l.opacity==null?1:l.opacity;
+ ctx.globalCompositeOperation=mapBlend(l.blendMode);
+ ctx.translate(originX,originY);
+ ctx.rotate(angle);
+ ctx.scale(sx,sy);
+ let offset=0;
+ lines.forEach((line,li)=>{
+   const style=normalizedTextStyle(getTextStyleAt(t,offset));
+   ctx.font=cssFont(style);
+   const tracking=(Number(style.tracking||0)/1000)*Number(style.fontSize||24);
+   const width=Array.from(line).reduce((w,ch)=>w+ctx.measureText(ch).width+tracking,0)-Math.max(0,line.length?tracking:0);
+   let x=0;
+   if(justification.includes('center')) x=(r.w-width)/2;
+   else if(justification.includes('right')) x=r.w-width;
+   drawTrackedLine(ctx,line,x,li*leading,{...style,__textData:t,__offset:offset,__layer:l});
+   offset+=line.length+1;
+ });
+ ctx.restore();
+}
+function drawLayerPixels(ctx,l){
+ if(!l || l.hidden || l.visible===false)return;
+ if(Array.isArray(l.children)){
+   drawCompositeNodes(ctx,l.children);
+   return;
+ }
+ const r=getLayerRect(l);
+ if(l.__gDirty && l.text){drawTextLayer(ctx,l);return;}
+ if(l.__gDirty && l.canvas){
+   ctx.save();ctx.globalAlpha=l.opacity==null?1:l.opacity;ctx.globalCompositeOperation=mapBlend(l.blendMode);
+   ctx.drawImage(l.canvas,r.x,r.y,r.w,r.h);ctx.restore();return;
+ }
+ if(l.canvas){
+   ctx.save();ctx.globalAlpha=l.opacity==null?1:l.opacity;ctx.globalCompositeOperation=mapBlend(l.blendMode);
+   ctx.drawImage(l.canvas,r.x,r.y,r.w,r.h);ctx.restore();
+ }
+}
+function drawCompositeNodes(ctx,nodes){
+ (nodes||[]).forEach(l=>drawLayerPixels(ctx,l));
+}
+function renderEditedDocument(targetCtx){
+ // When nothing was edited, use Photoshop's original composite for maximum fidelity.
+ if(!layers.some(x=>x.layer.__gDirty)){
+   targetCtx.drawImage(psd.canvas,0,0,psd.width,psd.height);return;
+ }
+ // Once a layer changes, rebuild the visible document from the actual layer pixels.
+ // This deliberately excludes the old bitmap of edited text/images, so there is no ghost layer behind it.
+ targetCtx.clearRect(0,0,psd.width,psd.height);
+ drawCompositeNodes(targetCtx,psd.children);
+}
+function drawPreview(){
+ if(!psd||!psd.canvas)return;
+ const viewport=$('viewport'); const stage=$('stage');
+ const vr=viewport.getBoundingClientRect();
+ const fit=Math.min(vr.width/psd.width,vr.height/psd.height);
+ const scale=fit*zoom;
+ const cw=Math.max(1,Math.round(psd.width*scale));
+ const ch=Math.max(1,Math.round(psd.height*scale));
+ const dpr=Math.min(window.devicePixelRatio||1,2);
+ preview.style.width=cw+'px'; preview.style.height=ch+'px';
+ preview.width=Math.max(1,Math.round(cw*dpr)); preview.height=Math.max(1,Math.round(ch*dpr));
+ stage.style.minWidth=Math.max(vr.width,cw+40)+'px';
+ stage.style.minHeight=Math.max(vr.height,ch+40)+'px';
+ const ctx=preview.getContext('2d');
+ ctx.setTransform(dpr*scale,0,0,dpr*scale,0,0); ctx.clearRect(0,0,psd.width,psd.height);
+ renderEditedDocument(ctx);
+}
+function mapBlend(b){const m={'normal':'source-over','multiply':'multiply','screen':'screen','overlay':'overlay','darken':'darken','lighten':'lighten','color dodge':'color-dodge','color burn':'color-burn','hard light':'hard-light','soft light':'soft-light','difference':'difference','exclusion':'exclusion','hue':'hue','saturation':'saturation','color':'color','luminosity':'luminosity'};return m[b]||'source-over'}
+function updateText(value){
+ if(!selected||selected.type!=='text')return;
+ const l=selected.layer; l.text.text=String(value); selected.text=String(value);
+ // Mark the real layer as changed. The renderer now omits its old bitmap and draws the new text in its place.
+ l.__gDirty=true;
+ status('Texto actualizado'); renderList(); renderProps(); drawPreview();
+}
+function moveText(dx,dy){
+ if(!selected||selected.type!=='text')return;
+ const t=selected.layer.text;
+ if(!t.transform)t.transform=[1,0,0,1,selected.layer.left||0,selected.layer.top||0];
+ t.transform[4]=(t.transform[4]||0)+dx; t.transform[5]=(t.transform[5]||0)+dy;
+ selected.layer.__gDirty=true; status(`Texto movido · ${Math.round(t.transform[4])}, ${Math.round(t.transform[5])}`); drawPreview();
+}
+async function replaceImage(file){
+ if(!selected||selected.type!=='image'||!file)return;
+ status('Procesando imagen…'); let url='';
+ try{
+   url=URL.createObjectURL(file); const img=new Image(); img.decoding='async';
+   await new Promise((res,rej)=>{img.onload=res;img.onerror=()=>rej(new Error('No se pudo leer la imagen.'));img.src=url});
+   const l=selected.layer, r=getLayerRect(l);
+   const c=document.createElement('canvas'); c.width=r.w; c.height=r.h;
+   const ctx=c.getContext('2d'); ctx.clearRect(0,0,r.w,r.h);
+   const scale=Math.max(r.w/img.naturalWidth,r.h/img.naturalHeight), dw=img.naturalWidth*scale, dh=img.naturalHeight*scale;
+   ctx.drawImage(img,(r.w-dw)/2,(r.h-dh)/2,dw,dh);
+   // Replace the actual layer pixels. The compositor will no longer draw the old image.
+   l.canvas=c; l.imageData=undefined; l.__gDirty=true;
+   status('Imagen reemplazada'); drawPreview(); renderProps();
+ }catch(e){status('Error al reemplazar la imagen');alert(e.message||e)}
+ finally{if(url)URL.revokeObjectURL(url)}
+}
+function exportJpg(){
+ if(!psd||!psd.canvas){alert('Primero abre un PSD.');return}
+ status('Generando JPG a resolución real…'); $('save').disabled=true;
+ setTimeout(()=>{
+   try{
+     const c=document.createElement('canvas'); c.width=psd.width; c.height=psd.height;
+     const ctx=c.getContext('2d'); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality='high';
+     renderEditedDocument(ctx);
+     c.toBlob(blob=>{
+       if(!blob){$('save').disabled=false;throw new Error('El navegador no pudo generar el JPG.')}
+       const a=document.createElement('a'),u=URL.createObjectURL(blob); a.href=u; a.download=sourceName+'-editado.jpg';
+       document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);
+       status(`JPG descargado · ${psd.width}×${psd.height}px`);$('save').disabled=false;
+     },'image/jpeg',0.95);
+   }catch(e){console.error(e);status('No se pudo generar el JPG');alert('No se pudo generar el JPG.\n\n'+(e.message||e));$('save').disabled=false}
+ },30);
+}
+$('open').onclick=()=>$('file').click();$('file').onchange=()=>{const f=$('file').files[0];if(f)loadPSD(f);$('file').value=''};$('drop').onclick=()=>$('file').click();['dragenter','dragover'].forEach(ev=>$('drop').addEventListener(ev,e=>{e.preventDefault();$('drop').classList.add('drag')}));['dragleave','drop'].forEach(ev=>$('drop').addEventListener(ev,e=>{e.preventDefault();$('drop').classList.remove('drag')}));$('drop').addEventListener('drop',e=>loadPSD(e.dataTransfer.files[0]));$('save').onclick=exportJpg;window.addEventListener('resize',drawPreview);
+function setZoom(v){zoom=Math.max(.5,Math.min(3,v));$('zlabel').textContent=Math.round(zoom*100)+'%';drawPreview()}$('zin').onclick=()=>setZoom(zoom+.1);$('zout').onclick=()=>setZoom(zoom-.1);$('zfit').onclick=()=>{setZoom(1);setTimeout(()=>{const v=$('viewport');v.scrollTop=Math.max(0,(v.scrollHeight-v.clientHeight)/2);v.scrollLeft=Math.max(0,(v.scrollWidth-v.clientWidth)/2)},0)};
+</script>
+</body></html>
