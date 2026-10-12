@@ -16,6 +16,15 @@ export default async function handler(req,res){try{
  }
  if(action==='logout'){if(!method(req,res,['POST']))return;clearSession(res);return ok(res,{message:'Sesión cerrada'})}
  if(action==='me'){if(!method(req,res,['GET']))return;const x=await identity(req);if(!x||x.profile?.estado!=='aprobado')return fail(res,'Sesión no autorizada',401);return ok(res,{email:x.user.email,admin:x.profile.administrador===true})}
+ if(action==='reset-password'){
+ if(!method(req,res,['POST']))return;
+ const {access_token,password}=req.body||{};
+ if(typeof access_token!=='string'||access_token.length<20||typeof password!=='string'||password.length<10||password.length>128)return fail(res,'Enlace o contraseña inválidos');
+ const {data:{user},error:ue}=await admin.auth.getUser(access_token);
+ if(ue||!user)return fail(res,'El enlace expiró o es inválido. Solicita uno nuevo.',401);
+ const {error:re}=await admin.auth.admin.updateUserById(user.id,{password});if(re)throw re;
+ clearSession(res);return ok(res,{message:'Contraseña actualizada. Ya puedes iniciar sesión.'});
+ }
  if(action==='recover'){if(!method(req,res,['POST']))return;const email=req.body?.email;if(typeof email!=='string')return fail(res,'Correo requerido');const {error}=await publicClient.auth.resetPasswordForEmail(email,{redirectTo:`https://${req.headers.host}/`});if(error)return fail(res,error.message);return ok(res,{message:'Si el correo existe, recibirás instrucciones de recuperación.'})}
  return fail(res,'Acción desconocida',404);
  }catch(e){safeError(res,e)}}

@@ -17,7 +17,7 @@ GUSANIZA SEGURIDAD - INSTALACION
 
 ADVERTENCIAS:
 - Las sesiones duran aproximadamente una hora. Luego hay que iniciar sesion de nuevo.
-- La recuperacion de contraseña aun no esta implementada en esta primera version. Se añadira antes de poner el sistema en uso definitivo.
+- La recuperacion de contraseña esta disponible desde el formulario de inicio de sesion. En Supabase Authentication > URL Configuration configura Site URL y Redirect URLs para https://gusanizaregistro.vercel.app/** (o tu dominio definitivo). El enlace debe abrir la pagina con el fragmento type=recovery y access_token.
 - Para verificar que nadie entra por la URL anterior, prueba desde una ventana privada.
 
 NOTA VERSION 2: Se corrigio el nombre real de tabla a public.perfiles_gusaniza. El primer boton apunta a https://semovil.vercel.app/ sin modificar su contenido. Este enlace externo NO esta protegido contra acceso directo.
