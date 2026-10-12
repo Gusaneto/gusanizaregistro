@@ -1,0 +1,1 @@
+V8: Diseño de herramientas en filas como el portal original. Título al entrar: Gusaniza Creador de Cuentas. Impresión: enlace explícito index.html, CSS/JS con rutas absolutas y respuesta de archivos con res.end() para conservar el tipo MIME. No se cambió la autenticación ni los permisos.

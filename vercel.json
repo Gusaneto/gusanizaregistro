@@ -1,1 +1,22 @@
-{"version":2,"functions":{"api/tool.js":{"includeFiles":"herramientas/**"}},"rewrites":[{"source":"/herramientas/:tool/:file*","destination":"/api/tool?tool=:tool&file=:file*"},{"source":"/herramientas/:tool","destination":"/api/tool?tool=:tool&file=index.html"}]}
+{
+  "version": 2,
+  "functions": {
+    "api/tool.js": {
+      "includeFiles": "herramientas/**"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/herramientas/:tool",
+      "destination": "/api/tool?tool=:tool&file=index.html"
+    },
+    {
+      "source": "/herramientas/:tool/",
+      "destination": "/api/tool?tool=:tool&file=index.html"
+    },
+    {
+      "source": "/herramientas/:tool/:file*",
+      "destination": "/api/tool?tool=:tool&file=:file*"
+    }
+  ]
+}
