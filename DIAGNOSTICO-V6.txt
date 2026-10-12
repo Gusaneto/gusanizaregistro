@@ -1,0 +1,9 @@
+VERSIÓN V6 - DIAGNÓSTICO DE SESIÓN
+
+Mantiene herramientas y permisos existentes.
+Después de iniciar sesión, consulta Vercel > Logs para la solicitud GET /api/auth con 401.
+En los mensajes de la función busca [Gusaniza session].
+- Cookie gs_session ausente: navegador no envió la cookie; investigar cabeceras Set-Cookie y dominio.
+- Cookie recibida; longitud: llegó la cookie. Si aparece Token no validado, investigar validación de Supabase.
+- Perfil no encontrado: investigar perfiles_gusaniza.
+No compartas el valor de ninguna cookie, token ni clave.

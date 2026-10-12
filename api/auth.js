@@ -12,10 +12,10 @@ export default async function handler(req,res){try{
  const {email,password}=req.body||{};const {data,error}=await publicClient.auth.signInWithPassword({email,password});if(error||!data.session)return fail(res,'Credenciales incorrectas o correo sin confirmar',401);
  const {data:profile,error:pe}=await admin.from('perfiles_gusaniza').select('estado,administrador').eq('id',data.user.id).maybeSingle();if(pe)throw pe;
  if(!profile||profile.estado!=='aprobado')return fail(res,'Tu cuenta todavía no está aprobada o está bloqueada',403);
- setSession(res,data.session.access_token);return ok(res,{message:'Sesión iniciada',admin:profile.administrador===true});
+ res.setHeader('Cache-Control','private, no-store');setSession(res,data.session.access_token);console.info('[Gusaniza login] Autenticación aprobada; cookie emitida; longitud token:',data.session.access_token.length);return ok(res,{message:'Sesión iniciada',admin:profile.administrador===true});
  }
  if(action==='logout'){if(!method(req,res,['POST']))return;clearSession(res);return ok(res,{message:'Sesión cerrada'})}
- if(action==='me'){if(!method(req,res,['GET']))return;const x=await identity(req);if(!x||x.profile?.estado!=='aprobado')return fail(res,'Sesión no autorizada',401);return ok(res,{email:x.user.email,admin:x.profile.administrador===true})}
+ if(action==='me'){if(!method(req,res,['GET']))return;res.setHeader('Cache-Control','private, no-store');const x=await identity(req);if(!x||x.profile?.estado!=='aprobado')return fail(res,'Sesión no autorizada',401);return ok(res,{email:x.user.email,admin:x.profile.administrador===true})}
  if(action==='reset-password'){
  if(!method(req,res,['POST']))return;
  const {access_token,password}=req.body||{};
